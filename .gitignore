@@ -19,7 +19,7 @@ report/Technical_Report.docx
 # outputs of local runs (the results of the final run are in report/results/)
 paint_results/
 
-# videos: the full video is on Google Drive, the GitHub copy is uploaded through the web editor
+# demo video (shared via Google Drive, too large for the repository)
 media/video/
 
 # full-window originals of the RViz screenshots (cropped versions are kept)

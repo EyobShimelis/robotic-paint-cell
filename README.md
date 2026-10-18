@@ -10,13 +10,13 @@ Every motion is planned with collision checking and executed by ROS 2 controller
 
 ![Demo: the full painting cycle at 40x speed](media/demo_preview.gif)
 
-*The full painting cycle at 40x speed. Full demo video (5 min): see below.*
+*The full painting cycle at 40x speed.*
 
 ## Demo video
 
-<!-- drag media/video/robotic_paint_cell_demo_github.mp4 into this line in the GitHub editor -->
+The full demo video (5 min) is on [Google Drive](https://drive.google.com/file/d/1BJIOXkFf0frJrz-VCAx8JcS1W-pGkB8A/view?usp=drive_link).
 
-Full-quality version: [Google Drive](https://drive.google.com/)
+All submission files (report, simulation files with CAD, screenshots, video): [Google Drive folder](https://drive.google.com/drive/folders/1BmRnFciEOvqbQ_sBYgk-fUvMSZPNPvJX?usp=sharing).
 
 ## Results
 
