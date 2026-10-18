@@ -1,0 +1,34 @@
+# Paint job definition for paint_cell_planner/paint_job
+car:
+  bottom_z: 0.5                 # car frame origin above the floor (car sits on the skid)
+conveyor:
+  outside_exit: 10.0            # conveyor_x where the painted car is sent
+gazebo_world: paint_booth
+
+paint:
+  color: [0.05, 0.25, 0.85]     # blue
+  speed: 0.4                    # gun speed along the surface, m/s
+  transit_speed_scale: 1.0      # moves between passes, fraction of the joint limits
+  stripe_spacing: 0.15          # distance between stripes, m (50 % overlap of a 0.30 m spray fan)
+  sample: 0.05                  # distance between path waypoints, m
+  max_tilt_deg: 20              # max gun tilt from the approach direction
+  touchup_max_tilt_deg: 50
+  retract: 0.4                  # approach / retract distance along the gun axis, m
+  spray_radius: 0.11            # triangles within this distance of the spray point are painted, m
+  flush_period: 1.0             # display update period, s
+  # stand-off (0.25 m) is set by the tool: paint_tcp is kept on the surface
+
+# Jobs in run order (front -> near side -> rear -> far side).
+#   rail         track side (near: y=-2.5, far: y=+2.5, rear: x=-4.0, front: x=+4.0)
+#   approach     nominal spray direction, car frame
+#   stripe_axis  stripe direction (the track follows the gun along it); step_axis / step_range: between stripes
+#   lead         carriage offset along the track, m (paint diagonally: unfolds the arm, keeps it off the conveyor)
+jobs:
+  - {zone: front,      rail: front, approach: [-1, 0, 0], stripe_axis: y, step_axis: z, lead: -1.5}
+  - {zone: hood,       rail: near,  approach: [0, 0, -1], stripe_axis: x, step_axis: y, step_range: [-2.0, 0.0]}
+  - {zone: roof,       rail: near,  approach: [0, 0, -1], stripe_axis: x, step_axis: y, step_range: [-2.0, 0.0]}
+  - {zone: right_side, rail: near,  approach: [0, 1, 0],  stripe_axis: x, step_axis: z, lead: -1.5}
+  - {zone: rear,       rail: rear,  approach: [1, 0, 0],  stripe_axis: y, step_axis: z, lead: -1.5}
+  - {zone: left_side,  rail: far,   approach: [0, -1, 0], stripe_axis: x, step_axis: z, lead: -1.2}
+  - {zone: roof,       rail: far,   approach: [0, 0, -1], stripe_axis: x, step_axis: y, step_range: [0.0, 2.0], lead: -0.4}
+  - {zone: hood,       rail: far,   approach: [0, 0, -1], stripe_axis: x, step_axis: y, step_range: [0.0, 2.0], lead: -0.4}

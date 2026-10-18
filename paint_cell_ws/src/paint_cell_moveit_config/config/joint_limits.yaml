@@ -1,0 +1,72 @@
+# Velocity / acceleration limits used for trajectory timing.
+# Position limits are soft limits inside the robot's mechanical limits (0.15 rad for joints 2, 3 and 5, which work
+# close to their limits here; 0.3 rad for the wrist rotations 4 and 6; 0.06 rad for joint 1), so that no planned motion - including the small overshoot
+# of a fast move in simulation - reaches a hard stop (a simulated joint that touches its stop can stick there).
+# Velocities from the KUKA KR 210 R3100-2 data (URDF); accelerations chosen conservatively for a paint robot.
+default_velocity_scaling_factor: 0.3
+default_acceleration_scaling_factor: 0.3
+
+joint_limits:
+  conveyor_x:
+    has_velocity_limits: true
+    max_velocity: 0.5          # m/s
+    has_acceleration_limits: true
+    max_acceleration: 0.3      # m/s^2
+  track_x:
+    has_velocity_limits: true
+    max_velocity: 1.0          # m/s
+    has_acceleration_limits: true
+    max_acceleration: 0.5      # m/s^2
+  track_y:
+    has_velocity_limits: true
+    max_velocity: 1.0
+    has_acceleration_limits: true
+    max_acceleration: 0.5
+  joint_1:
+    has_position_limits: true
+    min_position: -3.17
+    max_position: 3.17
+    has_velocity_limits: true
+    max_velocity: 1.8326       # 105 deg/s
+    has_acceleration_limits: true
+    max_acceleration: 2.0
+  joint_2:
+    has_position_limits: true
+    min_position: -2.29
+    max_position: -0.24
+    has_velocity_limits: true
+    max_velocity: 1.6406       # 94 deg/s
+    has_acceleration_limits: true
+    max_acceleration: 2.0
+  joint_3:
+    has_position_limits: true
+    min_position: -1.94
+    max_position: 2.78
+    has_velocity_limits: true
+    max_velocity: 1.7453       # 100 deg/s
+    has_acceleration_limits: true
+    max_acceleration: 2.0
+  joint_4:
+    has_position_limits: true
+    min_position: -5.8
+    max_position: 5.8
+    has_velocity_limits: true
+    max_velocity: 2.3736       # 136 deg/s
+    has_acceleration_limits: true
+    max_acceleration: 3.0
+  joint_5:
+    has_position_limits: true
+    min_position: -1.99
+    max_position: 1.99
+    has_velocity_limits: true
+    max_velocity: 2.2515       # 129 deg/s
+    has_acceleration_limits: true
+    max_acceleration: 3.0
+  joint_6:
+    has_position_limits: true
+    min_position: -5.8
+    max_position: 5.8
+    has_velocity_limits: true
+    max_velocity: 3.5954       # 206 deg/s
+    has_acceleration_limits: true
+    max_acceleration: 3.0

@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!-- Semantic description of the paint cell for MoveIt: planning groups, named poses, tool and collision matrix -->
+<robot name="paint_cell">
+
+  <!-- ===== planning groups ===== -->
+  <!-- 6-axis arm, tip = spray point 250 mm in front of the nozzle (Z = spray direction) -->
+  <group name="arm">
+    <chain base_link="base_link" tip_link="paint_tcp"/>
+  </group>
+  <!-- 2-axis floor track (carriage position on the loop) -->
+  <group name="track">
+    <joint name="track_x"/>
+    <joint name="track_y"/>
+  </group>
+  <!-- arm + track together (8 joints): used for direct moves from one paint pass to the next on the same side -->
+  <group name="arm_track">
+    <chain base_link="world" tip_link="paint_tcp"/>
+  </group>
+  <!-- skid conveyor: carries the skid + car body in and out of the booth -->
+  <group name="conveyor">
+    <joint name="conveyor_x"/>
+  </group>
+  <!-- spray gun as end effector (lets RViz show the drag marker on the gun) -->
+  <group name="gun">
+    <link name="spray_gun"/>
+    <link name="paint_tcp"/>
+  </group>
+  <end_effector name="spray_gun" parent_link="tool0" group="gun" parent_group="arm"/>
+
+  <!-- ===== named poses ===== -->
+  <group_state name="home" group="arm">          <!-- KUKA home: upper arm vertical, forearm horizontal -->
+    <joint name="joint_1" value="0"/>
+    <joint name="joint_2" value="-1.5708"/>
+    <joint name="joint_3" value="1.5708"/>
+    <joint name="joint_4" value="0"/>
+    <joint name="joint_5" value="0"/>
+    <joint name="joint_6" value="0"/>
+  </group_state>
+  <group_state name="park" group="arm">          <!-- folded: start / travel pose of the paint job -->
+    <joint name="joint_1" value="0"/>
+    <joint name="joint_2" value="-1.5708"/>
+    <joint name="joint_3" value="2.6"/>
+    <joint name="joint_4" value="0"/>
+    <joint name="joint_5" value="1.5"/>
+    <joint name="joint_6" value="0"/>
+  </group_state>
+  <group_state name="spray_down" group="arm">    <!-- gun pointing straight down in front of the robot -->
+    <joint name="joint_1" value="0"/>
+    <joint name="joint_2" value="-1.5708"/>
+    <joint name="joint_3" value="1.5708"/>
+    <joint name="joint_4" value="0"/>
+    <joint name="joint_5" value="1.5708"/>
+    <joint name="joint_6" value="0"/>
+  </group_state>
+  <!-- car positions on the conveyor -->
+  <group_state name="outside_entry" group="conveyor">
+    <joint name="conveyor_x" value="-10"/>
+  </group_state>
+  <group_state name="paint_position" group="conveyor">
+    <joint name="conveyor_x" value="0"/>
+  </group_state>
+  <group_state name="outside_exit" group="conveyor">
+    <joint name="conveyor_x" value="10"/>
+  </group_state>
+  <!-- track stations on the loop (track_y: 0 = near side y=-2.5, 5 = far side y=+2.5) -->
+  <group_state name="near_middle" group="track">
+    <joint name="track_x" value="0"/>
+    <joint name="track_y" value="0"/>
+  </group_state>
+  <group_state name="near_front_corner" group="track">
+    <joint name="track_x" value="4"/>
+    <joint name="track_y" value="0"/>
+  </group_state>
+  <group_state name="front_end" group="track">
+    <joint name="track_x" value="4"/>
+    <joint name="track_y" value="2.5"/>
+  </group_state>
+  <group_state name="far_front_corner" group="track">
+    <joint name="track_x" value="4"/>
+    <joint name="track_y" value="5"/>
+  </group_state>
+  <group_state name="far_middle" group="track">
+    <joint name="track_x" value="0"/>
+    <joint name="track_y" value="5"/>
+  </group_state>
+  <group_state name="far_rear_corner" group="track">
+    <joint name="track_x" value="-4"/>
+    <joint name="track_y" value="5"/>
+  </group_state>
+  <group_state name="rear_end" group="track">
+    <joint name="track_x" value="-4"/>
+    <joint name="track_y" value="2.5"/>
+  </group_state>
+  <group_state name="near_rear_corner" group="track">
+    <joint name="track_x" value="-4"/>
+    <joint name="track_y" value="0"/>
+  </group_state>
+
+  <!-- ===== collision matrix =====
+       Pairs listed here are NOT checked. Robot + gun against car_body, skid, conveyor and loop_track stay checked,
+       and so does the moving car + skid against the carriage and the booth walls. -->
+  <!-- conveyor line: the skid rides on the rollers and passes 0.3 m above the track rails; the car sits on the skid -->
+  <disable_collisions link1="conveyor"   link2="skid"       reason="Adjacent"/>
+  <disable_collisions link1="conveyor"   link2="car_body"   reason="Never"/>
+  <disable_collisions link1="conveyor"   link2="loop_track" reason="Adjacent"/>
+  <disable_collisions link1="loop_track" link2="skid"       reason="Never"/>
+  <disable_collisions link1="loop_track" link2="car_body"   reason="Never"/>
+  <disable_collisions link1="skid"       link2="car_body"   reason="Adjacent"/>
+  <!-- carriage rides on the track rails; robot bolted to the pedestal -->
+  <disable_collisions link1="carriage"   link2="loop_track" reason="Adjacent"/>
+  <disable_collisions link1="carriage"   link2="base_link"  reason="Adjacent"/>
+  <!-- KUKA arm (from kuka_kr_moveit_config kr210_r3100_2.srdf) -->
+  <disable_collisions link1="base_link" link2="link_1" reason="Adjacent"/>
+  <disable_collisions link1="link_1" link2="link_2" reason="Adjacent"/>
+  <disable_collisions link1="link_2" link2="link_3" reason="Adjacent"/>
+  <disable_collisions link1="link_3" link2="link_4" reason="Adjacent"/>
+  <disable_collisions link1="link_4" link2="link_5" reason="Adjacent"/>
+  <disable_collisions link1="link_5" link2="link_6" reason="Adjacent"/>
+  <disable_collisions link1="link_1" link2="link_3" reason="Never"/>
+  <disable_collisions link1="link_2" link2="link_5" reason="Never"/>
+  <disable_collisions link1="link_2" link2="link_6" reason="Never"/>
+  <disable_collisions link1="link_3" link2="link_5" reason="Never"/>
+  <disable_collisions link1="link_3" link2="link_6" reason="Never"/>
+  <disable_collisions link1="link_4" link2="link_6" reason="Never"/>
+  <!-- spray gun is bolted to the A6 flange -->
+  <disable_collisions link1="link_6" link2="spray_gun" reason="Adjacent"/>
+  <!-- never in contact in 3000 random states (track on both long sides, full joint ranges) -->
+  <disable_collisions link1="carriage"  link2="link_1" reason="Never"/>
+  <disable_collisions link1="carriage"  link2="link_2" reason="Never"/>
+  <disable_collisions link1="carriage"  link2="link_3" reason="Never"/>
+  <disable_collisions link1="base_link" link2="link_2" reason="Never"/>
+  <disable_collisions link1="base_link" link2="link_3" reason="Never"/>
+  <disable_collisions link1="link_1"    link2="link_4" reason="Never"/>
+</robot>

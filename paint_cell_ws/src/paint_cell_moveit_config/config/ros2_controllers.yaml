@@ -1,0 +1,38 @@
+# Gazebo only: how firmly the simulated joints follow their position commands (default 0.1 lags behind moving targets)
+gz_ros_control:
+  ros__parameters:
+    position_proportional_gain: 0.4
+
+# ros2_control controller manager: one trajectory controller each for the arm, the track and the skid conveyor
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    track_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    conveyor_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+arm_controller:
+  ros__parameters:
+    joints: [joint_1, joint_2, joint_3, joint_4, joint_5, joint_6]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+    allow_nonzero_velocity_at_trajectory_end: false
+
+track_controller:
+  ros__parameters:
+    joints: [track_x, track_y]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+    allow_nonzero_velocity_at_trajectory_end: false
+
+conveyor_controller:
+  ros__parameters:
+    joints: [conveyor_x]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+    allow_nonzero_velocity_at_trajectory_end: false

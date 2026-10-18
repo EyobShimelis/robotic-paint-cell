@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+  ros2_control interface for the 9 moving joints (conveyor_x, track_x, track_y, joint_1..6).
+  hardware = mock    -> mock_components/GenericSystem (joints follow commands exactly, for MoveIt testing)
+  hardware = gazebo  -> gz_ros2_control
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="ctrl_joint" params="name initial">
+    <joint name="${name}">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">${initial}</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="gz_material" params="link rgba">
+    <gazebo reference="${link}">
+      <visual><material><ambient>${rgba}</ambient><diffuse>${rgba}</diffuse><specular>0.3 0.3 0.3 1</specular></material></visual>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="paint_cell_ros2_control" params="hardware controllers_file car_start">
+    <xacro:if value="${hardware == 'gazebo'}">
+      <!-- gz_ros2_control starts the controller manager inside Gazebo -->
+      <gazebo>
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+          <robot_param>robot_description</robot_param>
+          <robot_param_node>robot_state_publisher</robot_param_node>
+          <parameters>${controllers_file}</parameters>
+        </plugin>
+      </gazebo>
+      <!-- Gazebo colours: the KUKA meshes have no material of their own -->
+      <xacro:gz_material link="base_link" rgba="0.25 0.25 0.27 1"/>
+      <xacro:gz_material link="link_1" rgba="1.0 0.38 0.0 1"/>
+      <xacro:gz_material link="link_2" rgba="1.0 0.38 0.0 1"/>
+      <xacro:gz_material link="link_3" rgba="1.0 0.38 0.0 1"/>
+      <xacro:gz_material link="link_4" rgba="1.0 0.38 0.0 1"/>
+      <xacro:gz_material link="link_5" rgba="1.0 0.38 0.0 1"/>
+      <xacro:gz_material link="link_6" rgba="0.25 0.25 0.27 1"/>
+      <xacro:gz_material link="car_body" rgba="0.74 0.74 0.71 1"/>   <!-- primer; Gazebo lighting is brighter than RViz -->
+      <!-- spray plume starts hidden; the paint job makes it visible while the gun sprays -->
+      <gazebo reference="spray_plume">
+        <visual><transparency>1.0</transparency><cast_shadows>false</cast_shadows></visual>
+      </gazebo>
+      <gazebo reference="car_glass">
+        <visual><transparency>0.5</transparency></visual>
+      </gazebo>
+    </xacro:if>
+
+    <ros2_control name="paint_cell_system" type="system">
+      <hardware>
+        <xacro:if value="${hardware == 'mock'}">
+          <plugin>mock_components/GenericSystem</plugin>
+          <param name="calculate_dynamics">true</param>
+        </xacro:if>
+        <xacro:if value="${hardware == 'gazebo'}">
+          <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </xacro:if>
+      </hardware>
+      <xacro:ctrl_joint name="conveyor_x" initial="${car_start}"/>
+      <xacro:ctrl_joint name="track_x" initial="0.0"/>
+      <xacro:ctrl_joint name="track_y" initial="0.0"/>
+      <xacro:ctrl_joint name="joint_1" initial="0.0"/>
+      <!-- start folded (the paint job's park / travel pose): upper arm vertical, forearm and gun folded down -->
+      <xacro:ctrl_joint name="joint_2" initial="${-pi/2}"/>
+      <xacro:ctrl_joint name="joint_3" initial="2.6"/>
+      <xacro:ctrl_joint name="joint_4" initial="0.0"/>
+      <xacro:ctrl_joint name="joint_5" initial="1.5"/>
+      <xacro:ctrl_joint name="joint_6" initial="0.0"/>
+    </ros2_control>
+  </xacro:macro>
+
+</robot>

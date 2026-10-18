@@ -1,0 +1,26 @@
+# ROS 2 build output
+paint_cell_ws/build/
+paint_cell_ws/install/
+paint_cell_ws/log/
+
+# CAD source files (shared via Google Drive, not in the repository)
+cad/
+
+# Python / editor clutter
+__pycache__/
+*.pyc
+.vscode/
+*~
+.~lock.*#
+
+# report source (only the PDF is published)
+report/Technical_Report.docx
+
+# outputs of local runs (the results of the final run are in report/results/)
+paint_results/
+
+# videos: the full video is on Google Drive, the GitHub copy is uploaded through the web editor
+media/video/
+
+# full-window originals of the RViz screenshots (cropped versions are kept)
+media/screenshots/*_full.png

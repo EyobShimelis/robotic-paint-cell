@@ -1,0 +1,82 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /MotionPlanning1
+  - Class: moveit_rviz_plugin/MotionPlanning
+    Name: MotionPlanning
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Cell Size: 1
+      Plane Cell Count: 14
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Name: Paint
+      Enabled: true
+      Topic:
+        Value: /paint_markers
+        Depth: 2000
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      Value: true
+    - Class: moveit_rviz_plugin/MotionPlanning
+      Name: MotionPlanning
+      Enabled: true
+      Move Group Namespace: ""
+      Robot Description: robot_description
+      Planning Scene Topic: /monitored_planning_scene
+      Scene Geometry:
+        Scene Alpha: 0.9
+        Show Scene Geometry: true
+      Scene Robot:
+        Show Robot Collision: false
+        Show Robot Visual: true
+        Robot Alpha: 1
+      Planning Request:
+        Planning Group: arm
+        Interactive Marker Size: 0.4
+        Query Goal State: true
+        Query Start State: false
+        Goal State Alpha: 0.35
+        Goal State Color: 60; 220; 90
+        Start State Alpha: 0.35
+        Start State Color: 120; 160; 255
+        Show Workspace: false
+        Colliding Link Color: 255; 230; 0
+        Joint Violation Color: 255; 0; 255
+      Planned Path:
+        Loop Animation: false
+        Show Robot Collision: false
+        Show Robot Visual: true
+        Show Trail: false
+        State Display Time: 0.05 s
+        Trajectory Topic: /display_planned_path
+      Planning Metrics:
+        Show Joint Torques: false
+        Show Manipulability: false
+        Show Manipulability Index: false
+        Show Weight Limit: false
+      Value: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: world
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 14
+      Focal Point: {X: 0, Y: 0, Z: 1}
+      Pitch: 0.55
+      Yaw: 4.2
+Window Geometry:
+  Height: 900
+  Width: 1500

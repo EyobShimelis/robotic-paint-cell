@@ -1,0 +1,662 @@
+executed: true
+simulator: gazebo
+total_time_s: 990.1
+paint:
+  color:
+  - 0.05
+  - 0.25
+  - 0.85
+  speed: 0.4
+  transit_speed_scale: 1.0
+  stripe_spacing: 0.15
+  sample: 0.05
+  max_tilt_deg: 20
+  touchup_max_tilt_deg: 50
+  retract: 0.4
+  spray_radius: 0.11
+  flush_period: 1.0
+planned_coverage:
+  front:
+    passes: 0.9784
+    with_touchups: 0.9993
+    missed_spots: 3
+  hood:
+    passes: 0.9656
+    with_touchups: 0.9959
+    missed_spots: 5
+  roof:
+    passes: 0.9879
+    with_touchups: 1.0
+    missed_spots: 6
+  right_side:
+    passes: 0.9598
+    with_touchups: 0.9988
+    missed_spots: 7
+  rear:
+    passes: 0.9388
+    with_touchups: 0.9984
+    missed_spots: 6
+  left_side:
+    passes: 0.9472
+    with_touchups: 0.9991
+    missed_spots: 10
+jobs:
+- zone: front
+  rail: front
+  kind: paint
+  strokes: 5
+  waypoints: 187
+  ik_fraction: 1.0
+  path_length_m: 9.84
+  spray_length_m: 7.63
+  max_tilt_deg: 20.0
+  planned_time_s: 28.3
+  wrist_range_rad:
+  - 0.52
+  - 1.63
+  - 0.79
+  - 1.63
+  paint_time_s: 28.5
+  zone_coverage_after: 0.9784
+- zone: front
+  rail: front
+  kind: touch-up
+  strokes: 3
+  strokes_planned: 3
+  waypoints: 64
+  ik_fraction: 1.0
+  path_length_m: 2.92
+  spray_length_m: 0.52
+  max_tilt_deg: 40.0
+  planned_time_s: 10.1
+  wrist_range_rad:
+  - -1.58
+  - 1.96
+  - -3.03
+  - 0.43
+  paint_time_s: 10.5
+- zone: hood
+  rail: near
+  kind: paint
+  strokes: 6
+  waypoints: 187
+  ik_fraction: 1.0
+  path_length_m: 10.13
+  spray_length_m: 5.84
+  max_tilt_deg: 20.0
+  planned_time_s: 30.4
+  wrist_range_rad:
+  - -0.4
+  - -0.18
+  - 1.54
+  - 1.95
+  paint_time_s: 30.6
+  zone_coverage_after: 0.5025
+- zone: hood
+  rail: near
+  kind: touch-up
+  strokes: 1
+  strokes_planned: 3
+  waypoints: 26
+  ik_fraction: 0.3333
+  path_length_m: 1.22
+  spray_length_m: 0.42
+  max_tilt_deg: 46.2
+  planned_time_s: 4.3
+  wrist_range_rad:
+  - -0.79
+  - -0.74
+  - -2.96
+  - -2.66
+  paint_time_s: 4.5
+- zone: roof
+  rail: near
+  kind: paint
+  strokes: 6
+  waypoints: 375
+  ik_fraction: 1.0
+  path_length_m: 18.87
+  spray_length_m: 12.81
+  max_tilt_deg: 20.0
+  planned_time_s: 53.3
+  wrist_range_rad:
+  - -0.36
+  - 0.3
+  - 1.36
+  - 1.79
+  paint_time_s: 53.5
+  zone_coverage_after: 0.5293
+- zone: roof
+  rail: near
+  kind: touch-up
+  strokes: 3
+  strokes_planned: 3
+  waypoints: 78
+  ik_fraction: 1.0
+  path_length_m: 3.63
+  spray_length_m: 1.23
+  max_tilt_deg: 36.6
+  planned_time_s: 12.8
+  wrist_range_rad:
+  - -0.51
+  - 0.01
+  - 1.57
+  - 2.04
+  paint_time_s: 13.4
+- zone: right_side
+  rail: near
+  kind: paint
+  strokes: 10
+  waypoints: 816
+  ik_fraction: 0.9948
+  path_length_m: 44.11
+  spray_length_m: 30.75
+  max_tilt_deg: 20.0
+  planned_time_s: 123.0
+  wrist_range_rad:
+  - 0.63
+  - 1.85
+  - 0.07
+  - 1.68
+  paint_time_s: 123.2
+  zone_coverage_after: 0.9635
+- zone: right_side
+  rail: near
+  kind: touch-up
+  strokes: 4
+  strokes_planned: 7
+  waypoints: 104
+  ik_fraction: 0.5714
+  path_length_m: 4.85
+  spray_length_m: 1.65
+  max_tilt_deg: 50.0
+  planned_time_s: 16.7
+  wrist_range_rad:
+  - -2.71
+  - 1.54
+  - -1.96
+  - 2.9
+  paint_time_s: 17.2
+- zone: rear
+  rail: rear
+  kind: paint
+  strokes: 8
+  waypoints: 294
+  ik_fraction: 0.9868
+  path_length_m: 15.11
+  spray_length_m: 10.92
+  max_tilt_deg: 20.0
+  planned_time_s: 45.2
+  wrist_range_rad:
+  - -1.62
+  - -0.57
+  - -1.53
+  - -0.52
+  paint_time_s: 45.4
+  zone_coverage_after: 0.9438
+- zone: rear
+  rail: rear
+  kind: touch-up
+  strokes: 4
+  strokes_planned: 6
+  waypoints: 82
+  ik_fraction: 0.6667
+  path_length_m: 3.53
+  spray_length_m: 0.63
+  max_tilt_deg: 50.0
+  planned_time_s: 14.5
+  wrist_range_rad:
+  - -2.89
+  - 1.59
+  - -0.98
+  - 1.03
+  paint_time_s: 15.2
+- zone: left_side
+  rail: far
+  kind: paint
+  strokes: 11
+  waypoints: 881
+  ik_fraction: 0.9965
+  path_length_m: 47.54
+  spray_length_m: 31.08
+  max_tilt_deg: 20.0
+  planned_time_s: 132.7
+  wrist_range_rad:
+  - -1.87
+  - -0.46
+  - -1.81
+  - -0.01
+  paint_time_s: 133.0
+  zone_coverage_after: 0.9523
+- zone: left_side
+  rail: far
+  kind: touch-up
+  strokes: 7
+  strokes_planned: 10
+  waypoints: 190
+  ik_fraction: 0.7
+  path_length_m: 8.43
+  spray_length_m: 3.23
+  max_tilt_deg: 50.0
+  planned_time_s: 28.5
+  wrist_range_rad:
+  - -1.46
+  - 2.24
+  - -2.81
+  - 1.56
+  paint_time_s: 29.9
+- zone: roof
+  rail: far
+  kind: paint
+  strokes: 6
+  waypoints: 375
+  ik_fraction: 1.0
+  path_length_m: 18.87
+  spray_length_m: 12.81
+  max_tilt_deg: 20.0
+  planned_time_s: 53.3
+  wrist_range_rad:
+  - -0.24
+  - 0.36
+  - -2.01
+  - -1.61
+  paint_time_s: 53.4
+  zone_coverage_after: 0.9945
+- zone: roof
+  rail: far
+  kind: touch-up
+  strokes: 3
+  strokes_planned: 3
+  waypoints: 77
+  ik_fraction: 1.0
+  path_length_m: 3.59
+  spray_length_m: 1.19
+  max_tilt_deg: 37.4
+  planned_time_s: 12.4
+  wrist_range_rad:
+  - -0.01
+  - 0.6
+  - -2.32
+  - -1.79
+  paint_time_s: 12.8
+- zone: hood
+  rail: far
+  kind: paint
+  strokes: 6
+  waypoints: 187
+  ik_fraction: 1.0
+  path_length_m: 9.98
+  spray_length_m: 5.84
+  max_tilt_deg: 20.0
+  planned_time_s: 29.9
+  wrist_range_rad:
+  - 0.17
+  - 0.4
+  - -2.17
+  - -1.73
+  paint_time_s: 30.1
+  zone_coverage_after: 0.9778
+- zone: hood
+  rail: far
+  kind: touch-up
+  strokes: 2
+  strokes_planned: 2
+  waypoints: 43
+  ik_fraction: 1.0
+  path_length_m: 1.26
+  spray_length_m: 0.31
+  max_tilt_deg: 50.0
+  planned_time_s: 5.3
+  wrist_range_rad:
+  - 0.38
+  - 1.34
+  - -3.17
+  - -2.17
+  paint_time_s: 5.7
+coverage:
+  front:
+    panel_area_m2: 1.01
+    painted_area_m2: 1.01
+    coverage: 0.9993
+  hood:
+    panel_area_m2: 2.04
+    painted_area_m2: 2.02
+    coverage: 0.9876
+  roof:
+    panel_area_m2: 3.62
+    painted_area_m2: 3.62
+    coverage: 1.0
+  right_side:
+    panel_area_m2: 5.02
+    painted_area_m2: 4.92
+    coverage: 0.9813
+  rear:
+    panel_area_m2: 1.93
+    painted_area_m2: 1.85
+    coverage: 0.959
+  left_side:
+    panel_area_m2: 4.96
+    painted_area_m2: 4.85
+    coverage: 0.979
+coverage_total: 0.9837
+events:
+- phase: conveyor
+  label: car in
+  start: 0.06
+  end: 42.3
+- phase: travel (fold + track)
+  label: front (front)
+  start: 42.34
+  end: 56.66
+- phase: approach / retract
+  label: front (front)
+  start: 56.66
+  end: 60.02
+- phase: paint
+  label: front (front)
+  start: 60.05
+  end: 88.58
+- phase: approach / retract
+  label: front (front) touch-up
+  start: 88.58
+  end: 94.23
+- phase: touch-up
+  label: front (front) touch-up
+  start: 94.28
+  end: 98.46
+- phase: approach / retract
+  label: front (front) touch-up
+  start: 98.46
+  end: 100.81
+- phase: touch-up
+  label: front (front) touch-up
+  start: 100.83
+  end: 104.16
+- phase: approach / retract
+  label: front (front) touch-up
+  start: 104.16
+  end: 109.77
+- phase: touch-up
+  label: front (front) touch-up
+  start: 109.82
+  end: 112.85
+- phase: travel (fold + track)
+  label: hood (near)
+  start: 112.89
+  end: 134.97
+- phase: approach / retract
+  label: hood (near)
+  start: 134.97
+  end: 137.38
+- phase: paint
+  label: hood (near)
+  start: 137.42
+  end: 168.04
+- phase: approach / retract
+  label: hood (near) touch-up
+  start: 168.04
+  end: 174.78
+- phase: touch-up
+  label: hood (near) touch-up
+  start: 174.82
+  end: 179.35
+- phase: approach / retract
+  label: roof (near)
+  start: 179.35
+  end: 186.11
+- phase: paint
+  label: roof (near)
+  start: 186.15
+  end: 239.7
+- phase: approach / retract
+  label: roof (near) touch-up
+  start: 239.7
+  end: 243.04
+- phase: touch-up
+  label: roof (near) touch-up
+  start: 243.08
+  end: 248.25
+- phase: approach / retract
+  label: roof (near) touch-up
+  start: 248.25
+  end: 250.9
+- phase: touch-up
+  label: roof (near) touch-up
+  start: 250.96
+  end: 255.43
+- phase: approach / retract
+  label: roof (near) touch-up
+  start: 255.43
+  end: 258.45
+- phase: touch-up
+  label: roof (near) touch-up
+  start: 258.49
+  end: 262.16
+- phase: travel (fold + track)
+  label: right_side (near)
+  start: 262.38
+  end: 276.6
+- phase: approach / retract
+  label: right_side (near)
+  start: 276.6
+  end: 280.06
+- phase: paint
+  label: right_side (near)
+  start: 280.1
+  end: 403.32
+- phase: approach / retract
+  label: right_side (near) touch-up
+  start: 403.32
+  end: 409.82
+- phase: touch-up
+  label: right_side (near) touch-up
+  start: 409.88
+  end: 413.6
+- phase: approach / retract
+  label: right_side (near) touch-up
+  start: 413.6
+  end: 420.33
+- phase: touch-up
+  label: right_side (near) touch-up
+  start: 420.38
+  end: 425.84
+- phase: approach / retract
+  label: right_side (near) touch-up
+  start: 425.84
+  end: 430.53
+- phase: touch-up
+  label: right_side (near) touch-up
+  start: 430.57
+  end: 434.97
+- phase: approach / retract
+  label: right_side (near) touch-up
+  start: 434.97
+  end: 440.58
+- phase: touch-up
+  label: right_side (near) touch-up
+  start: 440.63
+  end: 444.22
+- phase: travel (fold + track)
+  label: rear (rear)
+  start: 444.28
+  end: 466.01
+- phase: approach / retract
+  label: rear (rear)
+  start: 466.01
+  end: 469.36
+- phase: paint
+  label: rear (rear)
+  start: 469.41
+  end: 514.85
+- phase: approach / retract
+  label: rear (rear) touch-up
+  start: 514.85
+  end: 519.3
+- phase: touch-up
+  label: rear (rear) touch-up
+  start: 519.33
+  end: 524.24
+- phase: approach / retract
+  label: rear (rear) touch-up
+  start: 524.24
+  end: 527.9
+- phase: touch-up
+  label: rear (rear) touch-up
+  start: 527.96
+  end: 531.25
+- phase: approach / retract
+  label: rear (rear) touch-up
+  start: 531.25
+  end: 534.77
+- phase: touch-up
+  label: rear (rear) touch-up
+  start: 534.82
+  end: 537.97
+- phase: approach / retract
+  label: rear (rear) touch-up
+  start: 537.97
+  end: 543.34
+- phase: touch-up
+  label: rear (rear) touch-up
+  start: 543.4
+  end: 547.34
+- phase: travel (fold + track)
+  label: left_side (far)
+  start: 547.34
+  end: 568.14
+- phase: approach / retract
+  label: left_side (far)
+  start: 568.14
+  end: 571.38
+- phase: paint
+  label: left_side (far)
+  start: 571.41
+  end: 704.36
+- phase: approach / retract
+  label: left_side (far) touch-up
+  start: 704.36
+  end: 710.44
+- phase: touch-up
+  label: left_side (far) touch-up
+  start: 710.46
+  end: 714.17
+- phase: approach / retract
+  label: left_side (far) touch-up
+  start: 714.17
+  end: 720.58
+- phase: touch-up
+  label: left_side (far) touch-up
+  start: 720.62
+  end: 726.24
+- phase: approach / retract
+  label: left_side (far) touch-up
+  start: 726.24
+  end: 730.96
+- phase: touch-up
+  label: left_side (far) touch-up
+  start: 730.98
+  end: 734.41
+- phase: approach / retract
+  label: left_side (far) touch-up
+  start: 734.41
+  end: 738.0
+- phase: touch-up
+  label: left_side (far) touch-up
+  start: 738.05
+  end: 745.48
+- phase: approach / retract
+  label: left_side (far) touch-up
+  start: 745.48
+  end: 747.15
+- phase: touch-up
+  label: left_side (far) touch-up
+  start: 747.2
+  end: 750.89
+- phase: approach / retract
+  label: left_side (far) touch-up
+  start: 750.89
+  end: 756.57
+- phase: touch-up
+  label: left_side (far) touch-up
+  start: 756.59
+  end: 760.56
+- phase: approach / retract
+  label: left_side (far) touch-up
+  start: 760.56
+  end: 762.74
+- phase: touch-up
+  label: left_side (far) touch-up
+  start: 762.79
+  end: 764.88
+- phase: travel (fold + track)
+  label: roof (far)
+  start: 765.1
+  end: 779.66
+- phase: approach / retract
+  label: roof (far)
+  start: 779.66
+  end: 782.36
+- phase: paint
+  label: roof (far)
+  start: 782.4
+  end: 835.78
+- phase: approach / retract
+  label: roof (far) touch-up
+  start: 835.78
+  end: 839.09
+- phase: touch-up
+  label: roof (far) touch-up
+  start: 839.14
+  end: 844.27
+- phase: approach / retract
+  label: roof (far) touch-up
+  start: 844.27
+  end: 846.94
+- phase: touch-up
+  label: roof (far) touch-up
+  start: 847.0
+  end: 851.53
+- phase: approach / retract
+  label: roof (far) touch-up
+  start: 851.53
+  end: 854.53
+- phase: touch-up
+  label: roof (far) touch-up
+  start: 854.55
+  end: 857.73
+- phase: approach / retract
+  label: hood (far)
+  start: 857.73
+  end: 861.03
+- phase: paint
+  label: hood (far)
+  start: 861.07
+  end: 891.2
+- phase: approach / retract
+  label: hood (far) touch-up
+  start: 891.2
+  end: 894.23
+- phase: touch-up
+  label: hood (far) touch-up
+  start: 894.26
+  end: 897.18
+- phase: approach / retract
+  label: hood (far) touch-up
+  start: 897.18
+  end: 899.73
+- phase: touch-up
+  label: hood (far) touch-up
+  start: 899.74
+  end: 902.55
+- phase: travel (fold + track)
+  label: home
+  start: 902.57
+  end: 946.08
+- phase: travel (fold + track)
+  label: home
+  start: 946.08
+  end: 946.34
+- phase: conveyor
+  label: car out
+  start: 946.34
+  end: 990.12
